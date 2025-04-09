@@ -1,0 +1,51 @@
+PARA CREAR LA BASE DE DATOS ;
+EN EL .ENV DE MI BACKEND CAMBIAR LAS CREDENCIALES CORRESPONDIENTES YA SEA LOCAL Y SUBE COMO EL DB_HOST,
+DB_USER, DB_PASS ,DB_NAME ,DB_PORT , PARA PODER QUE EL BACKEND PUEDA INTERACTUAR CON LA BASE DE DATOS Y ASI PODER UTILIZAR LOS ENDPOINT.
+
+        
+create database prueba;
+use prueba;
+        
+
+
+CREATE TABLE buses (
+    id_bus INT AUTO_INCREMENT PRIMARY KEY,
+    numero_bus VARCHAR(50) NOT NULL,
+    placa VARCHAR(20) NOT NULL,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    caracteristicas TEXT,
+    id_marca INT,
+    estado ENUM('Activo', 'Inactivo') DEFAULT 'Activo',
+    FOREIGN KEY (id_marca) REFERENCES marcas(id_marca)
+);
+
+
+CREATE TABLE marcas (
+    id_marca INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_marca VARCHAR(100) NOT NULL
+);
+
+
+INSERT INTO marcas (nombre_marca) VALUES 
+('Volvo'),
+('Mercedes-Benz'),
+('Scania'),
+('MAN'),
+('Isuzu'),
+('Hyundai'),
+('Iveco'),
+('Renault'),
+('Hino'),
+('King Long');
+
+INSERT INTO buses (numero_bus, placa, caracteristicas, id_marca, estado) VALUES
+('BUS001', 'ABC-123', 'Bus de 2 pisos con aire acondicionado', 1, 'Activo'),
+('BUS002', 'DEF-456', 'Asientos reclinables y WiFi', 2, 'Activo'),
+('BUS003', 'GHI-789', 'Bus turístico con techo panorámico', 3, 'Inactivo'),
+('BUS004', 'JKL-321', 'Bus interprovincial con baño', 4, 'Activo'),
+('BUS005', 'MNO-654', 'Bus urbano con 40 asientos', 5, 'Inactivo'),
+('BUS006', 'PQR-987', 'Bus escolar amarillo', 6, 'Activo'),
+('BUS007', 'STU-159', 'Bus articulado con capacidad de 100 personas', 7, 'Activo'),
+('BUS008', 'VWX-753', 'Bus eléctrico', 8, 'Activo'),
+('BUS009', 'YZA-852', 'Bus con rampa para discapacitados', 9, 'Inactivo'),
+('BUS010', 'BCD-147', 'Bus turístico de lujo', 10, 'Activo');
